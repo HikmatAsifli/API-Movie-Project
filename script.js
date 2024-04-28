@@ -6,7 +6,7 @@ function searchMovie() {
   fetch(apiUrl)
     .then((response) => {
       if (!response.ok) {
-        throw new Error("Şəbəkə axtarışı düzgün deyildi");
+        throw new Error("The network search was incorrect");
       }
       return response.json();
     })
@@ -34,7 +34,6 @@ function searchMovie() {
                   ? movie.Poster
                   : "https://via.placeholder.com/150";
 
-              // Film detaylarını kullanarak istediğiniz işlemleri yapabilirsiniz
               const movieElement = `
                   <div class="card mt-5 mb-5 col-6">
                     <div class="card-body">
@@ -55,16 +54,16 @@ function searchMovie() {
               movieListDiv.innerHTML = movieElement;
             })
             .catch((error) => {
-              console.error("Film detaylarını alırken hata oluştu:", error);
+              console.error("Error retrieving movie details:", error);
             });
         } else {
-          movieListDiv.innerHTML = "<p>Heç bir nəticə tapılmadı.</p>";
+          movieListDiv.innerHTML = "<p>No results were found.</p>";
         }
       } else {
-        movieListDiv.innerHTML = "<p>Heç bir nəticə tapılmadı.</p>";
+        movieListDiv.innerHTML = "<p>No results were found.</p>";
       }
     })
     .catch((error) => {
-      console.error("Tapma əməliyyatında problem yarandı:", error);
+      console.error("There was a problem with the find operation:", error);
     });
 }
